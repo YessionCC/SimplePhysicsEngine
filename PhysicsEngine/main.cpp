@@ -1,6 +1,7 @@
 #include<graphics.h>
 #include<vector>
 #include<random>
+#include<ctime>
 #include"Object.h"
 #include"CircleCollider.h"
 #include"CircleShape.h"
@@ -63,20 +64,24 @@ void draw() {
 
 int main() {
 	init_scene();
-	initgraph(width, height, 1);
+	initgraph(width, height);
 	setlinecolor(BLACK);
+	setbkcolor(WHITE);
 	BeginBatchDraw();
-	int frame = 0;
+	clock_t last_t = clock();
+	clock_t duration = 10;
 	while (true) {
-		setbkcolor(WHITE);
 		cleardevice();
 
 		//printf("%d\n", ++frame);
 		for (int i = 0; i < 100; i++) 
-			update(0.0008);
+			update(0.0002*duration);
 		draw();
 
 		FlushBatchDraw();
+		clock_t cur_t = clock();
+		duration = cur_t - last_t;
+		last_t = cur_t;
 	}
 	EndBatchDraw();
 
