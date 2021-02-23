@@ -1,5 +1,5 @@
 # SimplePhysicsEngine
-This physics engine was simply implemented based on linear elasticity.
+This physics engine developed by VS2017 was simply implemented based on linear elasticity.
 Rect collider and circular collider have beeen implemented so far.
 
 ## There some problems:
