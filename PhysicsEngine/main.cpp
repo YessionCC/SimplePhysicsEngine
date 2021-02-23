@@ -16,12 +16,17 @@ vector<Object*> objs;
 
 void init_scene() {
 	for (int i = 0; i < 300; i += 120) {
-		objs.push_back(new Object(10, new RectCollider(80, 30), new RectShape(80, 30), Vec2(80, 80+i)));
-		objs.push_back(new Object(10, new RectCollider(30, 90), new RectShape(30, 90), Vec2(150, 80+i)));
-		objs.push_back(new Object(10, new RectCollider(80, 30), new RectShape(80, 30), Vec2(220, 80+i)));
-		objs.push_back(new Object(10, new RectCollider(30, 90), new RectShape(30, 90), Vec2(300, 80+i)));
+		objs.push_back(new Object(10, new RectCollider(80, 30), Vec2(80, 80+i)));
+		objs.push_back(new Object(10, new RectCollider(30, 90), Vec2(150, 80+i)));
+		objs.push_back(new Object(10, new RectCollider(80, 30), Vec2(220, 80+i)));
+		objs.push_back(new Object(10, new RectCollider(30, 90), Vec2(300, 80+i)));
 	}
-	objs.push_back(new Object(20, new CircleCollider(20), new CircleShape(20), Vec2(400, 50), Vec2(-10, 0)));
+	/*for (int i = 0; i < 400; i += 40) {
+		objs.push_back(new Object(20, new CircleCollider(10), new CircleShape(10), Vec2(400, 100+i), Vec2(0, 10)));
+	}*/
+	objs.push_back(new Object(20, new CircleCollider(10), new CircleShape(10), Vec2(400, 100), Vec2(-10, 0)));
+
+	//objs.push_back(new Object(20, new CircleCollider(30), new CircleShape(30), Vec2(250, 250), 0, true));
 	
 	objs.push_back(new Object(10, new RectCollider(1800, 60), new RectShape(1800, 60), Vec2(250, 450), 0, true));
 	objs.push_back(new Object(10, new RectCollider(60, 1800), new RectShape(60, 1800), Vec2(0, 450), 0, true));
@@ -67,6 +72,7 @@ int main() {
 	initgraph(width, height);
 	setlinecolor(BLACK);
 	setbkcolor(WHITE);
+	cleardevice();
 	BeginBatchDraw();
 	clock_t last_t = clock();
 	clock_t duration = 10;

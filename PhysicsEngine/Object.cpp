@@ -10,6 +10,10 @@ void Object::draw() {
 
 void Object::kinetic(Vec2& acc, double& m) {
 	acc = Vec2(0, mass*0.2);//ÖØÁ¦
+	/*Vec2 dir = (Vec2(250, 250) - position).normalize();
+	double exc = Vec2(250, 250).dis2(position);
+	acc = dir * (20000.0/exc);*/
+
 	acc = acc - velocity * 0.01;//¿Õ×è
 	Vec2 force; double moment = 0;
 	for (int i = 0; i < objs.size(); i++) {//Åö×²¼ì²â
