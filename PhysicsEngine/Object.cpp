@@ -4,8 +4,9 @@ using namespace std;
 
 extern vector<Object*> objs;
 
-void Object::draw() {
-	shape->draw(position, rotate);
+void Object::draw(bool show_speed) {
+	shape->draw(position, rotate, color);
+	if (show_speed) velocity.show_on_screen(position, RED);
 }
 
 void Object::kinetic(Vec2& acc, double& m) {

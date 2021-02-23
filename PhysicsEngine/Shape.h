@@ -6,5 +6,5 @@
 
 class Shape {
 public:
-	virtual void draw(Vec2& pos, double rotate) {}
+	virtual void draw(Vec2& pos, double rotate, COLORREF color) { setlinecolor(color); }
 };

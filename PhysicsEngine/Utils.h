@@ -1,6 +1,7 @@
 #pragma once
 #include<cmath>
 #include<cstdio>
+#include<graphics.h>
 
 struct Vec2 {
 	double x, y;
@@ -17,4 +18,9 @@ struct Vec2 {
 	Vec2(double x = 0, double y = 0) : x(x), y(y) {}
 	bool is_zero() { return abs(x) < 1e-5 && abs(y) < 1e-5; }
 	void print() { printf("%.4lf %.4lf\n", x, y); }
+	void show_on_screen(Vec2& pos, COLORREF col) {
+		setlinecolor(col);
+		Vec2 to = pos + *this * 4;
+		line(pos.x, pos.y, to.x, to.y);
+	}
 };

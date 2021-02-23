@@ -15,6 +15,7 @@ int height = 500;
 vector<Object*> objs;
 
 void init_scene() {
+	/*在此摆放物体*/
 	for (int i = 0; i < 300; i += 120) {
 		objs.push_back(new Object(10, new RectCollider(80, 30), Vec2(80, 80+i)));
 		objs.push_back(new Object(10, new RectCollider(30, 90), Vec2(150, 80+i)));
@@ -37,6 +38,9 @@ void init_scene() {
 	objs.push_back(new Object(10, new CircleCollider(800), new CircleShape(800), Vec2(1250, 220), 0, true));
 	objs.push_back(new Object(10, new CircleCollider(800), new CircleShape(800), Vec2(250, 1250), 0, true));
 	objs.push_back(new Object(10, new CircleCollider(800), new CircleShape(800), Vec2(250, -750), 0, true));*/
+
+	/*在此摆放物体*/
+
 	for (int i = 0; i < objs.size(); i++) objs[i]->idx = i;
 }
 
@@ -46,6 +50,8 @@ void update(double dt = 0.003) {
 	for (Object* obj : objs) {
 		Vec2 acc; double moment = 0;
 		obj->kinetic(acc, moment);
+		/*if (abs(moment) < 1e-4) moment = 0;
+		if (acc.is_zero()) acc = 0;*/
 		acs.push_back(acc);
 		ms.push_back(moment);
 	}
@@ -56,14 +62,14 @@ void update(double dt = 0.003) {
 		obj->position = obj->position + obj->velocity*dt;
 		obj->angle_vel += ms[i] * dt;
 		obj->rotate += obj->angle_vel*dt;
-		/*if (obj->velocity.is_zero()) obj->velocity = Vec2();
-		if (abs(obj->rotate)<1e-5) obj->rotate = 0;*/
+
+		//if (abs(obj->angle_vel) < 1e-5) obj->angle_vel = 0;//强制除抖动
 	}
 }
 
 void draw() {
 	for (Object* obj : objs) {
-		obj->draw();
+		obj->draw(true);
 	}
 }
 
@@ -79,7 +85,6 @@ int main() {
 	while (true) {
 		cleardevice();
 
-		//printf("%d\n", ++frame);
 		for (int i = 0; i < 100; i++) 
 			update(0.0002*duration);
 		draw();
